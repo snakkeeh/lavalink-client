@@ -39,7 +39,23 @@ export type JioSaavnSearchPlatform = "jssearch" | "jsrec";
 
 export type DuncteSearchPlatform = "speak" | "phsearch" | "pornhub" | "porn" | "tts";
 
+export type PulseLinkSearchPlatform = 
+    | "spsearch"
+    | "amzsearch"
+    | "amsearch"
+    | "dzsearch"
+    | "ymsearch"
+    | "vksearch"
+    | "tdsearch"
+    | "qbsearch"
+    | "jssearch"
+    | "admsearch"
+    | "gnsearch"
+    | "szsearch"
+    | "pdsearch";
+
 export type LavalinkClientSearchPlatform = "bcsearch";
+
 export type LavalinkClientSearchPlatformResolve = "bandcamp" | "bc";
 
 export type LavalinkSearchPlatform =
@@ -49,6 +65,7 @@ export type LavalinkSearchPlatform =
     | "bcsearch"
     | LavaSrcSearchPlatform
     | DuncteSearchPlatform
+    | PulseLinkSearchPlatform
     | JioSaavnSearchPlatform
     | LavalinkClientSearchPlatform;
 

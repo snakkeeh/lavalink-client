@@ -650,29 +650,29 @@ export class ManagerUtils {
         if (source === "ymsearch" && !node.info?.sourceManagers?.includes("yandexmusic")) {
             throw new Error("Lavalink Node has not 'yandexmusic' enabled, which is required to have 'ymsearch' work");
         }
-        if (source === "ytmsearch" && !node.info?.sourceManagers?.includes("youtube")) {
-            throw new Error("Lavalink Node has not 'youtube' enabled, which is required to have 'ytmsearch' work");
+        if (["ytmsearch", "ytsearch"].includes(source) && node.info?.sourceManagers?.includes("youtube")) {
+            throw new Error("Lavalink Node has 'youtube' enabled, which is required to have '" + source + "' work");
         }
-        if (source === "ytsearch" && !node.info?.sourceManagers?.includes("youtube")) {
-            throw new Error("Lavalink Node has not 'youtube' enabled, which is required to have 'ytsearch' work");
+        if (["vksearch", "vkrec"].includes(source) && node.info?.sourceManagers?.includes("vkmusic")) {
+            throw new Error("Lavalink Node has 'vkmusic' enabled, which is required to have '" + source + "' work");
         }
-        if (source === "vksearch" && !node.info?.sourceManagers?.includes("vkmusic")) {
-            throw new Error("Lavalink Node has not 'vkmusic' enabled, which is required to have 'vksearch' work");
-        }
-        if (source === "vkrec" && !node.info?.sourceManagers?.includes("vkmusic")) {
-            throw new Error("Lavalink Node has not 'vkmusic' enabled, which is required to have 'vkrec' work");
-        }
-        if (source === "qbsearch" && !node.info?.sourceManagers?.includes("qobuz")) {
-            throw new Error("Lavalink Node has not 'qobuz' enabled, which is required to have 'qbsearch' work");
-        }
-        if (source === "qbisrc" && !node.info?.sourceManagers?.includes("qobuz")) {
-            throw new Error("Lavalink Node has not 'qobuz' enabled, which is required to have 'qbisrc' work");
-        }
-        if (source === "qbrec" && !node.info?.sourceManagers?.includes("qobuz")) {
-            throw new Error("Lavalink Node has not 'qobuz' enabled, which is required to have 'qbrec' work");
+        if (["qbsearch", "qbisrc", "qbrec"].includes(source) && node.info?.sourceManagers?.includes("qobuz")) {
+            throw new Error("Lavalink Node has not 'qobuz' enabled, which is required to have '" + source + "' work");
         }
         if (["pdsearch", "pdisrc", "pdrec"].includes(source) && !node.info?.sourceManagers?.includes("pandora")) {
             throw new Error("Lavalink Node has not 'pandora' enabled, which is required to have '" + source + "' work");
+        }
+        if (source === "amzsearch" && !node.info?.sourceManagers?.includes("amazonmusic")) {
+            throw new Error("Lavalink Node has not 'amazonmusic' enabled, which is required to have 'amzsearch' work");
+        }
+        if (source === "admsearch" && !node.info?.sourceManagers?.includes("audiomack")) {
+            throw new Error("Lavalink Node has not 'audiomack' enabled, which is required to have 'admsearch' work");
+        }
+        if (source === "gnsearch" && !node.info?.sourceManagers?.includes("gaana")) {
+            throw new Error("Lavalink Node has not 'gaana' enabled, which is required to have 'gnsearch' work");
+        }
+        if (source === "szsearch" && !node.info?.sourceManagers?.includes("shazam")) {
+            throw new Error("Lavalink Node has not 'shazam' enabled, which is required to have 'szsearch' work");
         }
 
         return;
