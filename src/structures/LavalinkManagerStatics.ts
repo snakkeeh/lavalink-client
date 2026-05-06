@@ -65,8 +65,6 @@ export const DefaultSources: Record<SearchPlatform, LavalinkSearchPlatform | Cli
     pandora: "pdsearch",
     pd: "pdsearch",
     pdsearch: "pdsearch",
-    pdisrc: "pdisrc",
-    pdrec: "pdrec",
     "pandora music": "pdsearch",
     pandoramusic: "pdsearch",
     // speak PLUGIN
