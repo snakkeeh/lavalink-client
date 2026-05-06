@@ -281,9 +281,7 @@ export class LavalinkNode {
         const options: RequestInit & { path: string; extraQueryUrlParams?: URLSearchParams } = {
             path: `/${this.version}/${endpoint.startsWith("/") ? endpoint.slice(1) : endpoint}`,
             method: "GET",
-            headers: {
-                Authorization: this.options.authorization,
-            },
+            headers: { Authorization: this.options.authorization, ...this.NodeManager.LavalinkManager?.options?.httpHeaders }, // if httpHeaders is undefined/null, it won't be added, so we can keept it short like this
             signal:
                 this.options.requestSignalTimeoutMS && this.options.requestSignalTimeoutMS > 0
                     ? AbortSignal.timeout(this.options.requestSignalTimeoutMS)
@@ -645,13 +643,13 @@ export class LavalinkNode {
                 /[^\x20-\x7E]/g,
                 "",
             ),
+            ...this.NodeManager.LavalinkManager.options?.httpHeaders
         };
 
         if (typeof this.options.sessionId === "string" || typeof sessionId === "string") {
             headers["Session-Id"] = this.options.sessionId || sessionId;
             this.sessionId = this.options.sessionId || sessionId;
         }
-
         this.socket = new WebSocket(
             `ws${this.options.secure ? "s" : ""}://${this.options.host}:${this.options.port}/v4/websocket`,
             { headers },
