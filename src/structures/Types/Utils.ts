@@ -29,10 +29,8 @@ export type LavaSrcSearchPlatformBase =
     | "tdrec"
     | "qbsearch"
     | "qbisrc"
-    | "qbrec"
-    | "pdsearch"
-    | "pdisrc"
-    | "pdrec";
+    | "qbrec";
+
 export type LavaSrcSearchPlatform = LavaSrcSearchPlatformBase | "ftts";
 
 export type JioSaavnSearchPlatform = "jssearch" | "jsrec";
