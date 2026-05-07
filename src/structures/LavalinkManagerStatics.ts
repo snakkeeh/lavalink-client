@@ -1,13 +1,12 @@
 import type {
     ClientCustomSearchPlatformUtils,
     LavalinkSearchPlatform,
-    NodeLinkSearchPlatform,
     SearchPlatform,
     SourcesRegex,
 } from "./Types/Utils";
 
 /** Default Sources Record, to allow source parsing with multiple inputs. */
-export const DefaultSources: Record<SearchPlatform, LavalinkSearchPlatform | NodeLinkSearchPlatform | ClientCustomSearchPlatformUtils> = {
+export const DefaultSources: Record<SearchPlatform, LavalinkSearchPlatform | ClientCustomSearchPlatformUtils> = {
     // youtubemusic
     "youtube music": "ytmsearch",
     youtubemusic: "ytmsearch",
@@ -92,7 +91,6 @@ export const DefaultSources: Record<SearchPlatform, LavalinkSearchPlatform | Nod
     uri: "uri",
     // tidal
     tidal: "tdsearch",
-    td: "tdsearch",
     "tidal music": "tdsearch",
     tdsearch: "tdsearch",
     tdrec: "tdrec",
@@ -104,48 +102,11 @@ export const DefaultSources: Record<SearchPlatform, LavalinkSearchPlatform | Nod
     // amazon music
     amzsearch: "amzsearch",
     // audiomack
-    audiomack: "admsearch",
     admsearch: "admsearch",
     // gaana
-    gaanasearch: "gnsearch",
     gnsearch: "gnsearch",
     // shazam
     szsearch: "szsearch",
-    // node link search
-    search: "search",
-    // last.fm
-    lfsearch: "lfsearch",
-    // mixcloud
-    mcsearch: "mcsearch",
-    // nico
-    ncsearch: "ncsearch",
-    nicovideo: "ncsearch",
-    // bilibili
-    bilibili: "bilibili",
-    // shazam
-    shsearch: "shsearch",
-    // eternal box
-    ebox: "ebox",
-    jukebox: "ebox",
-    // songlink
-    slsearch: "slsearch",
-    // audius
-    ausearch: "ausearch",
-    // amazon music	
-    azsearch: "azsearch",
-    // anghami
-    agsearch: "agsearch", 
-    // bluesky
-    bksearch: "bksearch",
-    // letras.mus.br
-    lmsearch: "lmsearch",
-    // piper tts
-    pipertts: "pipertts",
-    // google tts
-    gtts: "gtts",
-    // google
-    gdsearch: "gdsearch",
-    ytrec: "ytrec",
 };
 
 /** Lavalink Plugins definiton */

@@ -167,12 +167,9 @@ export type ClientSearchPlatform =
     | LavalinkClientSearchPlatformResolve
     | LavalinkClientSearchPlatform
     | "js"
-    | "jiosaavn"
-    | "td"
-    | "tidal"
-    | "tdrec";
+    | "jiosaavn";
 
-export type SearchPlatform = LavalinkSearchPlatform | NodeLinkSearchPlatform | ClientSearchPlatform;
+export type SearchPlatform = LavalinkSearchPlatform | ClientSearchPlatform;
 
 export type SourcesRegex =
     | "YoutubeRegex"
