@@ -112,13 +112,7 @@ export type NodeLinkSearchPlatformBase =
     | "flowery"
     | "gdsearch";
 
-export type NodeLinkRecommendationPlatform =
-    | "ytrec"
-    | "sprec"
-    | "dzrec"
-    | "tdrec"
-    | "jsrec"
-    | "vkrec";
+export type NodeLinkRecommendationPlatform = "ytrec" | "sprec" | "dzrec" | "tdrec" | "jsrec" | "vkrec";
 
 export type NodeLinkSearchPlatform = NodeLinkSearchPlatformBase | NodeLinkRecommendationPlatform;
 
@@ -255,7 +249,7 @@ export interface UnresolvedSearchResult {
  * @internal
  */
 export interface MiniMapConstructor {
-    new(): MiniMap<unknown, unknown>;
+    new (): MiniMap<unknown, unknown>;
     new <K, V>(entries?: ReadonlyArray<readonly [K, V]> | null): MiniMap<K, V>;
     new <K, V>(iterable: Iterable<readonly [K, V]>): MiniMap<K, V>;
     readonly prototype: MiniMap<unknown, unknown>;
@@ -686,13 +680,13 @@ export interface LavaSearchResponse {
 /** SearchQuery Object for raw lavalink requests */
 export type SearchQuery =
     | {
-        /** lavalink search Query / identifier string */
-        query: string;
-        /** Extra url query params to use, e.g. for flowertts */
-        extraQueryUrlParams?: URLSearchParams;
-        /** Source to append to the search query string */
-        source?: SearchPlatform;
-    }
+          /** lavalink search Query / identifier string */
+          query: string;
+          /** Extra url query params to use, e.g. for flowertts */
+          extraQueryUrlParams?: URLSearchParams;
+          /** Source to append to the search query string */
+          source?: SearchPlatform;
+      }
     | /** Our just the search query / identifier string */ string;
 /** SearchQuery Object for Lavalink LavaSearch Plugin requests */
 export type LavaSearchQuery = {
