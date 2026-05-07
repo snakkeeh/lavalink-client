@@ -29,7 +29,10 @@ export type LavaSrcSearchPlatformBase =
     | "tdrec"
     | "qbsearch"
     | "qbisrc"
-    | "qbrec";
+    | "qbrec"
+    | "ytsearch"
+    | "jssearch"
+    | "jsrec";
 
 export type LavaSrcSearchPlatform = LavaSrcSearchPlatformBase | "ftts";
 
@@ -50,7 +53,9 @@ export type PulseLinkSearchPlatform =
     | "admsearch"
     | "gnsearch"
     | "szsearch"
-    | "pdsearch";
+    | "pdsearch"
+    | "ytsearch"
+    | "ytmsearch";
 
 export type LavalinkClientSearchPlatform = "bcsearch";
 
