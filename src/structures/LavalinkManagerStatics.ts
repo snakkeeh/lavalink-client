@@ -91,6 +91,7 @@ export const DefaultSources: Record<SearchPlatform, LavalinkSearchPlatform | Cli
     uri: "uri",
     // tidal
     tidal: "tdsearch",
+    td: "tdsearch",
     "tidal music": "tdsearch",
     tdsearch: "tdsearch",
     tdrec: "tdrec",
