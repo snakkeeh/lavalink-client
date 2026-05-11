@@ -200,6 +200,48 @@ node.addMixerLayer()
 - **`node.getConnectionMetrics()`**: Get connection metrics. [Docs](https://nodelink.js.org/docs/api/rest#node-information)
 - **`node.loadDirectStream(track, volume, position, filters)`**: Stream raw PCM audio. [Docs](https://nodelink.js.org/docs/api/nodelink-features#loadstream)
 
+### NodeLink Specific Sources (`SourcesRecord`)
+
+By default, the client uses a generic `DefaultSources` record to map human-friendly prefixes like `youtube:`, `spotify:`, etc. to Lavalink search sources.
+
+For NodeLink, you can override this behavior to use the NodeLink-specific source prefixes (including `admsearch`, `audiomack`, `gaanasearch`, `gtts`, `pipertts`, etc.) via the `NodeLinkDefaultSources` export and the `ManagerUtils#SourcesRecord` property:
+
+```ts
+import { LavalinkManager, NodeType, NodeLinkNode, NodeLinkDefaultSources } from "lavalink-client";
+
+// create the manager as usual, but with a NodeLink node
+client.lavalink = new LavalinkManager({
+    nodes: [
+        {
+            authorization: "youshallnotpass",
+            host: "localhost",
+            port: 2333,
+            id: "nodelink-main",
+            nodeType: NodeType.NodeLink,
+        },
+    ],
+    sendToShard: (guildId, payload) => client.guilds.cache.get(guildId)?.shard?.send(payload),
+    autoSkip: true,
+    client: {
+        id: envConfig.clientId,
+        username: "MyBot",
+    },
+});
+
+// IMPORTANT: Override the default source mapping so `ytsearch:`, `amsearch:`, `admsearch:`, etc.
+// use the NodeLink-specific prefixes.
+client.lavalink.utils.SourcesRecord = NodeLinkDefaultSources;
+
+// Optional: You can also provide your own custom record extending NodeLinkDefaultSources:
+client.lavalink.utils.SourcesRecord = {
+    ...NodeLinkDefaultSources,
+    // custom alias that only your bot understands, which resolves to a NodeLink source
+    mycustomsource: "ytsearch",
+};
+```
+
+This makes all helper methods that use `ManagerUtils` (such as `transformQuery`, `transformLavaSearchQuery` and `validateSourceString`) work with NodeLink’s extended search prefixes when you are connected to a NodeLink node.
+
 ### NodeLink Specififc Events?
 
 ```ts

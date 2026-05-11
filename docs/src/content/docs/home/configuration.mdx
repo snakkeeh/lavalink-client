@@ -108,6 +108,18 @@ client.on("ready", () => {
     client.lavalink.init(client.user); // init lavalink
 });
 
+// If you use NodeLink nodes, you can optionally override the default
+// source mapping to use NodeLink-specific prefixes (admsearch, gaanasearch, gtts, etc.)
+//
+// import { NodeLinkDefaultSources } from "lavalink-client";
+// client.lavalink.utils.SourcesRecord = NodeLinkDefaultSources;
+//
+// Or extend it with your own aliases:
+// client.lavalink.utils.SourcesRecord = {
+//   ...NodeLinkDefaultSources,
+//   mycustomsource: "ytsearch",
+// };
+
 // for the custom queue Store create a redis instance
 client.redis = createClient({ url: "redis://localhost:6379", password: "securepass" });
 client.redis.connect();

@@ -24,7 +24,114 @@ import {
     YoutubeOAuthResponse,
 } from "./Types/NodeLink";
 import { Track, UnresolvedTrack } from "./Types/Track";
+import type { ClientCustomSearchPlatformUtils, NodeLinkSearchPlatform, SearchPlatform } from "./Types/Utils";
 import { safeStringify } from "./Utils";
+
+/** Default Sources Record for NodeLink, to allow source parsing with multiple inputs. */
+export const NodeLinkDefaultSources: Record<SearchPlatform, NodeLinkSearchPlatform | ClientCustomSearchPlatformUtils> =
+    {
+        // youtubemusic
+        "youtube music": "ytmsearch",
+        youtubemusic: "ytmsearch",
+        ytmsearch: "ytmsearch",
+        ytm: "ytmsearch",
+        musicyoutube: "ytmsearch",
+        "music youtube": "ytmsearch",
+        // youtube
+        youtube: "ytsearch",
+        yt: "ytsearch",
+        ytsearch: "ytsearch",
+        // soundcloud
+        soundcloud: "scsearch",
+        scsearch: "scsearch",
+        sc: "scsearch",
+        // apple music
+        "apple music": "amsearch",
+        apple: "amsearch",
+        applemusic: "amsearch",
+        amsearch: "amsearch",
+        am: "amsearch",
+        musicapple: "amsearch",
+        "music apple": "amsearch",
+        // spotify
+        spotify: "spsearch",
+        spsearch: "spsearch",
+        sp: "spsearch",
+        "spotify.com": "spsearch",
+        spotifycom: "spsearch",
+        sprec: "sprec",
+        spsuggestion: "sprec",
+        // deezer
+        deezer: "dzsearch",
+        dz: "dzsearch",
+        dzsearch: "dzsearch",
+        dzisrc: "dzsearch", // NodeLink doesn't expose `dzisrc` as a prefix string
+        dzrec: "dzrec",
+        // yandexmusic
+        "yandex music": "ymsearch",
+        yandexmusic: "ymsearch",
+        yandex: "ymsearch",
+        ymsearch: "ymsearch",
+        ymrec: "ymsearch",
+        // VK Music
+        vksearch: "vksearch",
+        vkmusic: "vksearch",
+        "vk music": "vksearch",
+        vkrec: "vkrec",
+        vk: "vksearch",
+        // Qobuz
+        qbsearch: "qbsearch",
+        qobuz: "qbsearch",
+        qbisrc: "qbsearch",  // NodeLink doesn't expose `qbisrc` as a prefix string
+        qbrec: "qbsearch", // NodeLink doesn't expose `qbrec` as a prefix string
+        // pandora
+        pandora: "pdsearch",
+        pd: "pdsearch",
+        pdsearch: "pdsearch",
+        "pandora music": "pdsearch",
+        pandoramusic: "pdsearch",
+        // speak PLUGIN
+        speak: "speak",
+        // Map Lavalink's `tts` prefix to NodeLink's `gtts`
+        tts: "gtts",
+        ftts: "ftts",
+        flowery: "flowery",
+        "flowery.tts": "flowery",
+        flowerytts: "flowery",
+        // Client sided search platforms
+        bandcamp: "bcsearch",
+        bc: "bcsearch",
+        bcsearch: "bcsearch",
+        // other searches (not supported explicitly in NodeLink prefixes)
+        phsearch: "search",
+        pornhub: "search",
+        porn: "search",
+        // local files
+        local: "local",
+        // http requests
+        http: "http",
+        https: "https",
+        link: "link",
+        uri: "uri",
+        // tidal
+        tidal: "tdsearch",
+        td: "tdsearch",
+        "tidal music": "tdsearch",
+        tdsearch: "tdsearch",
+        tdrec: "tdrec",
+        // jiosaavn
+        jiosaavn: "jssearch",
+        js: "jssearch",
+        jssearch: "jssearch",
+        jsrec: "jsrec",
+        amzsearch: "amsearch", // amazon music (falls back to Apple Music search on NodeLink)
+        // audiomack
+        admsearch: "admsearch",
+        // gaana
+        gnsearch: "gaanasearch",
+        // shazam
+        szsearch: "szsearch",
+    };
 
 export class NodeLinkNode extends LavalinkNode {
     public nodeType = NodeType.NodeLink;

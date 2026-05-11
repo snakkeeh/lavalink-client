@@ -53,6 +53,9 @@ export function parseLavalinkConnUrl(connectionUrl: string): {
 
 export class ManagerUtils {
     public LavalinkManager: LavalinkManager | undefined = undefined;
+    /** Override this with your custom sources record if you want to use custom sources for your node */
+    public SourcesRecord = DefaultSources;
+
     constructor(LavalinkManager?: LavalinkManager) {
         this.LavalinkManager = LavalinkManager;
     }
@@ -468,17 +471,17 @@ export class ManagerUtils {
     }
 
     /**
-     * Finds the source of a query string by checking if it starts with a valid source prefix defined in the DefaultSources object. If a valid source prefix is found, it returns the corresponding SearchPlatform; otherwise, it returns null. This function is useful for determining the intended search platform for a given query string, allowing for more accurate search results when the user specifies a source (e.g., "ytsearch:Never Gonna Give You Up" would indicate that the search should be performed on YouTube).
+     * Finds the source of a query string by checking if it starts with a valid source prefix defined in the Default Sources object. If a valid source prefix is found, it returns the corresponding SearchPlatform; otherwise, it returns null. This function is useful for determining the intended search platform for a given query string, allowing for more accurate search results when the user specifies a source (e.g., "ytsearch:Never Gonna Give You Up" would indicate that the search should be performed on YouTube).
      * @param queryString
      * @returns
      */
     findSourceOfQuery(queryString: string) {
-        const foundSource = Object.keys(DefaultSources)
+        const foundSource = Object.keys(this.SourcesRecord)
             .find((source) => queryString?.toLowerCase?.()?.startsWith(`${source}:`.toLowerCase()))
             ?.trim?.()
             ?.toLowerCase?.() as SearchPlatform | undefined;
         // ignore links...
-        if (foundSource && !["https", "http"].includes(foundSource) && DefaultSources[foundSource]) {
+        if (foundSource && !["https", "http"].includes(foundSource) && this.SourcesRecord[foundSource]) {
             return foundSource;
         }
         return null;
@@ -493,7 +496,7 @@ export class ManagerUtils {
         const foundSource = this.findSourceOfQuery(searchQuery.query);
         // if query is like youtube:never gonna give you up, then this.findSourceOfQuery will return "youtube" as a valid source, since it's inside DEFAULT_SOURCES. Then it will be assigned as the proper source and removed from the query.
         if (foundSource) {
-            searchQuery.source = DefaultSources[foundSource];
+            searchQuery.source = this.SourcesRecord[foundSource];
             searchQuery.query = searchQuery.query.slice(`${foundSource}:`.length, searchQuery.query.length); // remove ytsearch: from the query
         }
         return searchQuery;
@@ -526,7 +529,7 @@ export class ManagerUtils {
             return this.extractSourceOfQuery(Query);
         }
         const providedSource = query?.source?.trim?.()?.toLowerCase?.() as LavalinkSearchPlatform | undefined;
-        const validSourceExtracted = DefaultSources[providedSource ?? typedDefault];
+        const validSourceExtracted = this.SourcesRecord[providedSource ?? typedDefault];
         return this.extractSourceOfQuery({
             query: query.query,
             extraQueryUrlParams: query.extraQueryUrlParams,
@@ -551,7 +554,7 @@ export class ManagerUtils {
             return this.extractSourceOfQuery(Query);
         }
         const providedSource = query?.source?.trim?.()?.toLowerCase?.() as LavalinkSearchPlatform | undefined;
-        const validSourceExtracted = DefaultSources[providedSource ?? typedDefault];
+        const validSourceExtracted = this.SourcesRecord[providedSource ?? typedDefault];
         // transform the query object
         const Query = {
             query: query.query,
@@ -574,7 +577,7 @@ export class ManagerUtils {
      */
     validateSourceString(node: LavalinkNode, sourceString: SearchPlatform) {
         if (!sourceString) throw new Error(`No SourceString was provided`);
-        const source = DefaultSources[sourceString.toLowerCase().trim()] as LavalinkSearchPlatform;
+        const source = this.SourcesRecord[sourceString.toLowerCase().trim()] as LavalinkSearchPlatform;
         if (!source && !!this.LavalinkManager.options.playerOptions.allowCustomSources)
             throw new Error(
                 `Lavalink-Client does not support SearchQuerySource: '${sourceString}'. You can disable this check by setting 'ManagerOptions.PlayerOptions.allowCustomSources' to true`,
