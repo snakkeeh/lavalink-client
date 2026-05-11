@@ -10,16 +10,16 @@
         "astro": "astro"
     },
     "dependencies": {
-        "@astrojs/check": "^0.9.4",
-        "@astrojs/starlight": "^0.34.5",
-        "astro": "^5.11.0",
-        "chalk": "^5.6.0",
+        "@astrojs/check": "^0.9.9",
+        "@astrojs/starlight": "^0.34.8",
+        "astro": "^5.18.1",
+        "chalk": "^5.6.2",
         "gray-matter": "^4.0.3",
-        "marked": "^16.0.0",
-        "sharp": "^0.34.3",
-        "starlight-typedoc": "^0.21.3",
-        "typedoc": "^0.28.7",
-        "typedoc-plugin-markdown": "^4.7.0",
-        "typescript": "^5.8.3"
+        "marked": "^16.4.2",
+        "sharp": "^0.34.5",
+        "starlight-typedoc": "^0.21.5",
+        "typedoc": "^0.28.19",
+        "typedoc-plugin-markdown": "^4.11.0",
+        "typescript": "^5.9.3"
     }
 }
