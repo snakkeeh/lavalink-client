@@ -9,7 +9,7 @@ Logs about the changed features.
 
 ---
 
-## **Version 2.10.1**
+## **Version 2.10.2**
 
 - Added source validation helper logic in `Node` to verify supported/provided sources more safely before usage.
 - Improved source normalization/mapping internals by replacing the older loop-based handling and adding explicit handling for YouTube / YouTube Music source aliases.
@@ -18,65 +18,64 @@ Logs about the changed features.
 - Includes the merged upstream changes from PRs #182 and #184.
 - Added a NodeLink-specific `NodeLinkDefaultSources` mapping and exposed `ManagerUtils#SourcesRecord` as an overridable record. This allows you to plug in `NodeLinkDefaultSources` (or your own custom record) so that queries like `ytmsearch:`, `admsearch:`, `audiomack:`, `gaanasearch:`, `gtts:`, etc. are resolved according to NodeLink’s extended source prefixes:
 
-  ```ts
-  import { LavalinkManager, NodeType, NodeLinkDefaultSources } from "lavalink-client";
+    ```ts
+    import { LavalinkManager, NodeType, NodeLinkDefaultSources } from "lavalink-client";
 
-  client.lavalink = new LavalinkManager({
-      nodes: [
-          {
-              authorization: "youshallnotpass",
-              host: "localhost",
-              port: 2333,
-              id: "nodelink-main",
-              nodeType: NodeType.NodeLink,
-          },
-      ],
-      sendToShard: (guildId, payload) => client.guilds.cache.get(guildId)?.shard?.send(payload),
-      autoSkip: true,
-      client: {
-          id: envConfig.clientId,
-          username: "MyBot",
-      },
-  });
+    client.lavalink = new LavalinkManager({
+        nodes: [
+            {
+                authorization: "youshallnotpass",
+                host: "localhost",
+                port: 2333,
+                id: "nodelink-main",
+                nodeType: NodeType.NodeLink,
+            },
+        ],
+        sendToShard: (guildId, payload) => client.guilds.cache.get(guildId)?.shard?.send(payload),
+        autoSkip: true,
+        client: {
+            id: envConfig.clientId,
+            username: "MyBot",
+        },
+    });
 
-  // Override the default source mapping for NodeLink usage:
-  client.lavalink.utils.SourcesRecord = NodeLinkDefaultSources;
+    // Override the default source mapping for NodeLink usage:
+    client.lavalink.utils.SourcesRecord = NodeLinkDefaultSources;
 
-  // Or extend it with additional custom aliases:
-  client.lavalink.utils.SourcesRecord = {
-      ...NodeLinkDefaultSources,
-      mycustomsource: "ytsearch",
-  };
-  ```
+    // Or extend it with additional custom aliases:
+    client.lavalink.utils.SourcesRecord = {
+        ...NodeLinkDefaultSources,
+        mycustomsource: "ytsearch",
+    };
+    ```
 
 - Added a new `ManagerOptions.httpHeaders?: Record<string, string>` option that lets you define extra HTTP headers which will be sent on all REST requests from the client to your Lavalink/NodeLink nodes. This is useful for things like custom auth, proxy hints, or observability headers.
+    - Headers are validated on manager construction:
+        - `httpHeaders` must be a plain object (no arrays) with **string keys and string values**.
+        - The following headers are **forbidden** and will throw if provided, because they are managed internally by the client: `authorization`, `user-id`, `client-name`, `session-id`.
+    - Example usage:
 
-  - Headers are validated on manager construction:
-    - `httpHeaders` must be a plain object (no arrays) with **string keys and string values**.
-    - The following headers are **forbidden** and will throw if provided, because they are managed internally by the client: `authorization`, `user-id`, `client-name`, `session-id`.
-  - Example usage:
-
-  ```ts
-  client.lavalink = new LavalinkManager({
-      nodes: [
-          {
-              authorization: "youshallnotpass",
-              host: "localhost",
-              port: 2333,
-              id: "main",
-          },
-      ],
-      sendToShard: (guildId, payload) => client.guilds.cache.get(guildId)?.shard?.send(payload),
-      client: {
-          id: envConfig.clientId,
-          username: "MyBot",
-      },
-      httpHeaders: {
-          "x-forwarded-for": "127.0.0.1",
-          "x-my-bot-name": "MyAwesomeBot",
-      },
-  });
-  ```
+    ```ts
+    client.lavalink = new LavalinkManager({
+        nodes: [
+            {
+                authorization: "youshallnotpass",
+                host: "localhost",
+                port: 2333,
+                id: "main",
+            },
+        ],
+        sendToShard: (guildId, payload) => client.guilds.cache.get(guildId)?.shard?.send(payload),
+        client: {
+            id: envConfig.clientId,
+            username: "MyBot",
+        },
+        httpHeaders: {
+            "x-forwarded-for": "127.0.0.1",
+            "x-my-bot-name": "MyAwesomeBot",
+        },
+    });
+    ```
 
 ## **Version 2.10.0**
 
