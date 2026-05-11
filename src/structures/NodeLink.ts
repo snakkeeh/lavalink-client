@@ -82,7 +82,7 @@ export const NodeLinkDefaultSources: Record<SearchPlatform, NodeLinkSearchPlatfo
         // Qobuz
         qbsearch: "qbsearch",
         qobuz: "qbsearch",
-        qbisrc: "qbsearch",  // NodeLink doesn't expose `qbisrc` as a prefix string
+        qbisrc: "qbsearch", // NodeLink doesn't expose `qbisrc` as a prefix string
         qbrec: "qbsearch", // NodeLink doesn't expose `qbrec` as a prefix string
         // pandora
         pandora: "pdsearch",
