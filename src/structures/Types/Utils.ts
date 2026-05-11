@@ -30,16 +30,35 @@ export type LavaSrcSearchPlatformBase =
     | "qbsearch"
     | "qbisrc"
     | "qbrec"
-    | "pdsearch"
-    | "pdisrc"
-    | "pdrec";
+    | "ytsearch"
+    | "jssearch"
+    | "jsrec";
+
 export type LavaSrcSearchPlatform = LavaSrcSearchPlatformBase | "ftts";
 
 export type JioSaavnSearchPlatform = "jssearch" | "jsrec";
 
 export type DuncteSearchPlatform = "speak" | "phsearch" | "pornhub" | "porn" | "tts";
 
+export type PulseLinkSearchPlatform =
+    | "spsearch"
+    | "amzsearch"
+    | "amsearch"
+    | "dzsearch"
+    | "ymsearch"
+    | "vksearch"
+    | "tdsearch"
+    | "qbsearch"
+    | "jssearch"
+    | "admsearch"
+    | "gnsearch"
+    | "szsearch"
+    | "pdsearch"
+    | "ytsearch"
+    | "ytmsearch";
+
 export type LavalinkClientSearchPlatform = "bcsearch";
+
 export type LavalinkClientSearchPlatformResolve = "bandcamp" | "bc";
 
 export type LavalinkSearchPlatform =
@@ -49,8 +68,53 @@ export type LavalinkSearchPlatform =
     | "bcsearch"
     | LavaSrcSearchPlatform
     | DuncteSearchPlatform
+    | PulseLinkSearchPlatform
     | JioSaavnSearchPlatform
     | LavalinkClientSearchPlatform;
+
+export type NodeLinkSearchPlatformBase =
+    | "ytsearch"
+    | "ytmsearch"
+    | "scsearch"
+    | "search"
+    | "spsearch"
+    | "amsearch"
+    | "dzsearch"
+    | "tdsearch"
+    | "bcsearch"
+    | "admsearch"
+    | "audiomack"
+    | "gaanasearch"
+    | "jssearch"
+    | "lfsearch"
+    | "pdsearch"
+    | "vksearch"
+    | "mcsearch"
+    | "ncsearch"
+    | "nicovideo"
+    | "bilibili"
+    | "shsearch"
+    | "szsearch"
+    | "ebox"
+    | "jukebox"
+    | "slsearch"
+    | "qbsearch"
+    | "ymsearch"
+    | "ausearch"
+    | "azsearch"
+    | "agsearch"
+    | "bksearch"
+    | "lmsearch"
+    | "pipertts"
+    | "gtts"
+    | "speak"
+    | "ftts"
+    | "flowery"
+    | "gdsearch";
+
+export type NodeLinkRecommendationPlatform = "ytrec" | "sprec" | "dzrec" | "tdrec" | "jsrec" | "vkrec";
+
+export type NodeLinkSearchPlatform = NodeLinkSearchPlatformBase | NodeLinkRecommendationPlatform;
 
 export type ClientCustomSearchPlatformUtils = "local" | "http" | "https" | "link" | "uri";
 

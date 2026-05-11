@@ -674,6 +674,18 @@ export class ManagerUtils {
         if (["pdsearch", "pdisrc", "pdrec"].includes(source) && !node.info?.sourceManagers?.includes("pandora")) {
             throw new Error("Lavalink Node has not 'pandora' enabled, which is required to have '" + source + "' work");
         }
+        if (source === "amzsearch" && !node.info?.sourceManagers?.includes("amazonmusic")) {
+            throw new Error("Lavalink Node has not 'amazonmusic' enabled, which is required to have 'amzsearch' work");
+        }
+        if (source === "admsearch" && !node.info?.sourceManagers?.includes("audiomack")) {
+            throw new Error("Lavalink Node has not 'audiomack' enabled, which is required to have 'admsearch' work");
+        }
+        if (source === "gnsearch" && !node.info?.sourceManagers?.includes("gaana")) {
+            throw new Error("Lavalink Node has not 'gaana' enabled, which is required to have 'gnsearch' work");
+        }
+        if (source === "szsearch" && !node.info?.sourceManagers?.includes("shazam")) {
+            throw new Error("Lavalink Node has not 'shazam' enabled, which is required to have 'szsearch' work");
+        }
 
         return;
     }

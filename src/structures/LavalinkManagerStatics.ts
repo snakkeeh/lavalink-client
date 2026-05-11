@@ -65,8 +65,6 @@ export const DefaultSources: Record<SearchPlatform, LavalinkSearchPlatform | Cli
     pandora: "pdsearch",
     pd: "pdsearch",
     pdsearch: "pdsearch",
-    pdisrc: "pdisrc",
-    pdrec: "pdrec",
     "pandora music": "pdsearch",
     pandoramusic: "pdsearch",
     // speak PLUGIN
@@ -102,6 +100,14 @@ export const DefaultSources: Record<SearchPlatform, LavalinkSearchPlatform | Cli
     js: "jssearch",
     jssearch: "jssearch",
     jsrec: "jsrec",
+    // amazon music
+    amzsearch: "amzsearch",
+    // audiomack
+    admsearch: "admsearch",
+    // gaana
+    gnsearch: "gnsearch",
+    // shazam
+    szsearch: "szsearch",
 };
 
 /** Lavalink Plugins definiton */
@@ -113,6 +119,7 @@ export const LavalinkPlugins = {
     Jiosaavn_Plugin: "jiosaavn-plugin",
     LavalinkFilterPlugin: "lavalink-filter-plugin",
     JavaTimedLyricsPlugin: "java-lyrics-plugin",
+    PulseLinkPlugin: "pulselink-plugin",
 };
 
 /** Lavalink Sources regexes for url validations */

@@ -2463,7 +2463,6 @@ export class LavalinkNode {
         if (this.info?.sourceManagers.includes("vkmusic")) source.add("vksearch").add("vkrec");
         if (this.info?.sourceManagers.includes("tidal")) source.add("tdsearch").add("tdrec");
         if (this.info?.sourceManagers.includes("qobuz")) source.add("qbsearch").add("qbisrc").add("qbrec");
-        if (this.info?.sourceManagers.includes("pandora")) source.add("pdsearch").add("pdisrc").add("pdrec");
         if (this.info?.sourceManagers.includes("youtube")) source.add("ytsearch").add("ytmsearch");
 
         return typeof src === "string" && source.has(src as LavalinkSearchPlatform);
